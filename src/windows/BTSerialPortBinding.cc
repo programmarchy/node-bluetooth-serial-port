@@ -169,7 +169,7 @@ void BTSerialPortBinding::EIO_AfterRead(uv_work_t *req) {
         argv[1] = Undefined();
     } else {
         Buffer *buffer = Buffer::New(baton->size);
-        memcpy_s(Buffer::Data(buffer), baton->size, baton->result, baton->size);
+        memcpy(Buffer::Data(buffer), baton->result, baton->size);
         Local<Object> globalObj = Context::GetCurrent()->Global();
         Local<Function> bufferConstructor = Local<Function>::Cast(globalObj->Get(String::New("Buffer")));
         Handle<Value> constructorArgs[3] = { buffer->handle_, Integer::New(baton->size), Integer::New(0) };
