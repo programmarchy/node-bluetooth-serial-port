@@ -203,7 +203,7 @@ void BTSerialPortBinding::EIO_AfterRead(uv_work_t *req) {
     baton->rfcomm->Unref();
     baton->cb.Dispose();
     delete baton;
-    baton = nullptr;
+    baton = NULL;
 }
     
 void BTSerialPortBinding::Init(Handle<Object> target) {
