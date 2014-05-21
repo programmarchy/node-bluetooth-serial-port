@@ -156,7 +156,9 @@ using namespace v8;
 
 		if ([devices objectForKey: address] == nil) {
 			IOBluetoothDevice *device = [IOBluetoothDevice deviceWithAddressString:address];
-
+            if (device.isConnected && device.isIncoming) {
+                [device closeConnection];
+            }
 			if (device != nil) {
 				IOBluetoothRFCOMMChannel *channel = [[IOBluetoothRFCOMMChannel alloc] init];
 				if ([device openRFCOMMChannelSync: &channel withChannelID:[channelID intValue] delegate: self] == kIOReturnSuccess) {
