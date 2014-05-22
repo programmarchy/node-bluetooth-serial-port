@@ -289,7 +289,11 @@ Handle<Value> DeviceINQ::ListPairedDevices(const Arguments& args) {
     }
     Local<Function> cb = Local<Function>::Cast(args[0]);
 
-    cb->Call(Context::GetCurrent()->Global(), 1, Array::New(0));
+    Local<Value> argv[1] = {
+        Array::New(0)
+    };
+
+    cb->Call(Context::GetCurrent()->Global(), 1, argv);
 
     return scope.Close(Undefined());
 }
