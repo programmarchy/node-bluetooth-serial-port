@@ -129,7 +129,7 @@ using namespace v8;
 - (IOReturn)connectDevice: (NSString *) address onChannel: (int) channel withPipe: (pipe_t *)pipe
 {
 	[connectLock lock];
-	
+    
 	Pipe *pipeObj = [[Pipe alloc] init];
 	pipeObj.pipe = pipe;
 

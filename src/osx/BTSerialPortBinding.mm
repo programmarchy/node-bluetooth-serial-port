@@ -177,12 +177,12 @@ void BTSerialPortBinding::EIO_AfterRead(uv_work_t *req) {
             Undefined()
         };
         baton->cb->Call(Context::GetCurrent()->Global(), 2, argv);
-    } else if (baton->size == 0) {
-        Handle<Value> argv[2] = {
-            Exception::Error(String::New("connection has been closed")),
-            Undefined()
-        };
-        baton->cb->Call(Context::GetCurrent()->Global(), 2, argv);
+    // } else if (baton->size == 0) {
+    //     Handle<Value> argv[2] = {
+    //         Exception::Error(String::New("connection has been closed")),
+    //         Undefined()
+    //     };
+    //     baton->cb->Call(Context::GetCurrent()->Global(), 2, argv);
     } else {
         Local<Object> globalObj = Context::GetCurrent()->Global();
         Local<Function> bufferConstructor = Local<Function>::Cast(globalObj->Get(String::New("Buffer")));
